@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+service CustomerBranch{
+    rpc Query(QueryRequest) returns (QueryResponse) {};
+    rpc Withdraw(WithdrawRequest) returns (WithdrawResponse) {};
+    rpc Deposit(DepositRequest) returns (DepositResponse) {};
+
+}
+
+message QueryRequest {
+
+}
+message QueryResponse {
+    int32 balance = 1;
+}
+message WithdrawRequest {
+    int32 balance = 1;
+}
+message WithdrawResponse {
+    bool success = 1;
+}
+message DepositRequest {
+    int32 balance = 1;
+}
+message DepositResponse {
+    bool success = 1;
+}
+
