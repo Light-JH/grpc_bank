@@ -1,8 +1,10 @@
+from sre_constants import SUCCESS
 import grpc
-import example_pb2
-import example_pb2_grpc
+import server_pb2
+import server_pb2_grpc
 
-class Branch(example_pb2_grpc.RPCServicer):
+
+class Branch(server_pb2_grpc.CustomerBranchServicer):
 
     def __init__(self, id, balance, branches):
         # unique ID of the Branch
@@ -21,5 +23,25 @@ class Branch(example_pb2_grpc.RPCServicer):
         pass
 
     # TODO: students are expected to process requests from both Client and Branch
-    def MsgDelivery(self,request, context):
-        return example_pb2.
+    # def MsgDelivery(self,request, context):
+    def Query(self, request, context):
+        return server_pb2.QueryResponse(balance = self.balance)
+
+    def Withdraw(self, request, context):
+        if request.amount <= self.balance:
+            success = True
+            self.balance -= request.amount
+            # need to propogate branches
+        else:
+            success = False
+        return server_pb2.WithdrawResponse(success = success)
+
+    def Deposit(self, request, context):
+        if request.amount >  0:
+            success = True
+            self.balance += request.amount
+            # need to propogate branches
+        else:
+            success = False
+        return server_pb2.DepositResponse(success = success)
+

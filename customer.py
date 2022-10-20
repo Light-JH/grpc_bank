@@ -1,6 +1,6 @@
 import grpc
-import example_pb2
-import example_pb2_grpc
+import server_pb2
+import server_pb2_grpc
 import time
 
 class Customer:
@@ -16,7 +16,8 @@ class Customer:
 
     # TODO: students are expected to create the Customer stub
     def createStub(self):
-
+        channel = grpc.insecure_channel('localhost:50051')
+        self.stub = server_pb2_grpc.CustomerBranchStub(channel)
 
     # TODO: students are expected to send out the events to the Bank
     def executeEvents(self):
