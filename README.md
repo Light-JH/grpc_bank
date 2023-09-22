@@ -10,5 +10,6 @@ A couple simplifications are made to limit the scope of the project:
 •	relationship between customers and branches 
  
 Diagram: The customer changes the branches while submitting request to the Bank
+
 <img width="363" alt="image" src="https://github.com/Light-JH/grpc_bank/assets/68739569/de6eae2d-5b6e-45bd-b07f-c8d834e06c33">
 
